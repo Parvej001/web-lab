@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+    <title>AJAX Example</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<style>
+    body{
+        font-family: cursive;
+        background-color: beige;
+            
+    }
+    .container{
+        background-color: burlywood;
+        padding:8px;
+        margin:10px;
+        border-radius:5px;
+        text-align: center;
+    }
+    .output-contain
+    {
+        background-color: burlywood;
+        padding:8px;
+        margin:10px;
+        border-radius:5px;
+        
+    }
+    button{
+        padding:5px;
+        margin-right: 40px;
+        font-family: cursive;
+        border-radius:5px;
+
+    }
+    button:hover{
+        background-color: chocolate;
+    }
+    #output { 
+        display: none; 
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        max-height: 300px;
+        overflow-y: auto; 
+        white-space:pre-wrap;
+    }
+    
+</style>
+<body>
+    <h2 style="text-align: center;">Simple AJAX Example</h2>
+    <div class="container">
+        <button id="load-text">Load-text</button>
+        <button id="load-jquery">load-jquery</button>
+        <button id="load-json">Load-json</button>
+        <button id="parse-json">Parse-json</button>
+    </div>
+    <div class="output-contain">
+        <div id="output"></div>
+    </div>
+
+</body>
+<script>
+    const showoutput = (data,className) =>{
+        $('#output').text(data).attr('class',className).show();
+    };
+
+    $('#load-text').click(()=>{
+        $.get('textfile.txt')
+        .done(data=>showoutput(data,'text'))
+        .fail(()=>showoutput('error loading the file','error'));
+    });
+    $('#load-jquery').click(()=>{
+        $.ajax('textfile.txt')
+        .done(data=>showoutput(data,'jquery'))
+        .fail(()=>showoutput('error loading the file','error'));
+    });
+    $('#load-json').click(()=>{
+        $.getJSON('data.json')
+        .done(data=>showoutput(JSON.stringify(data,null,2),'json'))
+        .fail(()=>showoutput('error loading the file','error'));
+    });
+    $('#parse-json').click(()=>{
+        $.get('data.json')
+        .done(data=>{
+            try{
+                const jsonData = typeof data === 'string' ? JSON.parse(data):data;
+                showoutput(JSON.stringify(jsonData,null,2),'parse-json');
+            }
+            catch(e)
+            {
+                showoutput(`Error:loading in file.\n ${e.message}`,'error')
+            }
+        })
+        .fail(()=>showoutput('error loading the file','error'));
+    });
+
+</script>

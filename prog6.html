@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+    <title>SIMPLE CALCULATOR</title>
+</head>
+<style>
+    div{
+        background-color:blueviolet;
+        text-align: center;
+        font-family:'Times New Roman', Times, serif;
+        padding: 25px;
+        border-radius: 10px;
+
+    }
+    input[type="number"]{
+        width: 90%;
+        padding:20px;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+    select{
+        margin:20px;
+        width:90%;
+        padding:10px;
+        border-radius: 5px;
+        font-size: 15px;
+        color: grey;
+    }
+    button{
+        margin:20px;
+        width:90%;
+        padding:10px;
+        border-radius: 5px;
+        font-size: 15px;
+        color: grey;
+    }
+
+</style>
+<body>
+    <div>
+        <div style="background-color: black;margin-left:5px; color: aliceblue; width: 90%;text-align: center; ">
+            <h1>CALCULATOR</h1>
+        </div>
+        
+        <div>
+            <input type="number" id="num1" placeholder="Enter your First number">
+        </div>
+        <div>
+            <input type="number" id="num2" placeholder="Enter your second number">
+        </div>
+        <select id="operation">
+            <option value="sum">Sum</option>
+            <option value="Product">Product</option>
+            <option value="difference">difference</option>
+            <option value="remainder">Remainder</option>
+            <option value="quotient">quotient</option>
+            <option value="power">Power</option>
+            <option value="square-root_1">square-root(1st number)</option>
+            <option value="square">Square</option>
+        </select>
+        <br>
+        <button onclick="calculate()">Calculate</button>
+        <p id="result"></p>
+    </div>
+</body>
+<script>
+    function calculate()
+    {
+        const num1=parseFloat(document.getElementById('num1').value)||0;
+        const num2=parseFloat(document.getElementById('num2').value)||0;
+        const operation=document.getElementById('operation').value;
+        let result;
+        switch(operation)
+        {
+            case 'sum' : result=num1+num2;break;
+            case 'product' : result=num1*num2;break;
+            case 'difference' : result=num1-num2;break;
+            case 'remainder' : result=num1%num2;break;
+            case 'quotient' :result= num2!==0?num1/num2:'cannot be determined';break;
+            case 'power': result = Math.pow(num1,num2);break;
+            case 'square-root_1':result=Math.sqrt(num1);break;
+            case 'square':result=Math.pow(num1,2);break;
+        }
+        document.getElementById('result').innerText=`Result=${result}`;
+    }
+</script>

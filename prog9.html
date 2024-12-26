@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+    <title>JqueryScript</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<style>
+    body{
+        background-color: rgb(114, 148, 148);
+        font-family: cursive;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .container{
+        background-color: blanchedalmond;
+        border-radius: 10px;
+        
+        
+    }
+    button{
+        font-family: cursive;
+        background-color: cornflowerblue;
+    }
+    button:hover{
+        font-family: cursive;
+        background-color: aqua;
+    }
+    .box{
+        
+        width: 100px;
+        height:100px;
+        background-color: brown;
+        border:2px solid black;
+        margin:20px;
+    }
+    .animated{
+        background-color: chartreuse !important;
+    }
+</style>
+<body>
+    <h1 > Jquery demonstration</h1>
+    <div class="container">
+        <p id="paragraph">This is a paragraph.</p>
+        <button id="appendpara">append Paragraph</button>
+
+        <ul id="list">
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+        </ul>
+        <button id="appendlist">append list</button>
+        <div class="box" id="box"></div>
+        <button id="appendbox">append box</button>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        $("#appendpara").click(function(){
+            $("#paragraph").append("new appended text.");
+        })
+        $("#appendlist").click(function(){
+            $("#list").append("<li>new list</li>");
+        })
+
+        $("#appendbox").click(function(){
+            $("#box")
+            .animate({height:"150px",width:"150px"},1000)
+            .animate({height:"100px",width:"100px"},1000)
+            .addClass("animated");
+        })
+    })
+</script>

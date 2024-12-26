@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Examples</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body { font-family: Arial; background-color: #f4f4f9; }
+        h1 { text-align: center; }
+        #output { display: none; margin-top: 10px; border: 1px solid #ccc; padding: 10px;white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>AJAX Example</h1>
+    <div>
+        <button id="plain-ajax-btn">Plain JS AJAX</button>
+        <button id="jquery-ajax-btn">jQuery AJAX</button>
+        <button id="jquery-json-btn">Fetch JSON</button>
+        <button id="parse-json-btn">Parse JSON</button>
+        <div id="output"></div>
+    </div>
+    <script>
+        function showOutput(data) {
+            $('#output').show().text(data);
+        }
+
+        // Plain JavaScript AJAX
+        $('#plain-ajax-btn').click  (function () {
+            const xhr = new XMLHttpRequest();
+            xhr.open('get', 'textfile.txt', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    showOutput(xhr.responseText);
+                } else {
+                    showOutput('Error loading file.');
+                }
+            };
+            xhr.send();
+        });
+
+        // jQuery AJAX
+        $('#jquery-ajax-btn').click(function () {
+            $.ajax('textfile.txt')
+                .done(showOutput)
+                .fail(() => showOutput('Error fetching text file.'));
+        });
+
+        // jQuery getJSON
+        $('#jquery-json-btn').click( function () {
+            $.getJSON('data.json')
+                .done(data => showOutput(JSON.stringify(data, null, 2)))
+                .fail(() => showOutput('Error fetching JSON.'));
+        });
+
+        // Parse JSON
+        $('#parse-json-btn').click (function () {
+            $.get('data.json')
+                .done(data => {
+                    try {
+                        const parsedData = typeof data === 'string' ? JSON.parse(data) : data;
+                        showOutput(JSON.stringify(parsedData, null, 2));
+                    } catch (e) {
+                        showOutput('Error parsing JSON.');
+                    }
+                })
+                .fail(() => showOutput('Error fetching JSON.'));
+        });
+    </script>
+</body>
+</html>

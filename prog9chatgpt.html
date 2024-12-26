@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery Script Example</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+      margin: 20px auto;
+      position: relative;
+    }
+    .animated {
+      background-color: yellow !important;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>jQuery Script Demonstration</h2>
+  
+  <!-- Paragraph Section -->
+  <p id="paragraph">This is an example paragraph.</p>
+  <button id="appendParagraph">Append Text to Paragraph</button>
+
+  <!-- List Section -->
+  <ul id="list">
+    <li>List Item 1</li>
+    <li>List Item 2</li>
+    <li>List Item 3</li>
+  </ul>
+  <button id="appendList">Append Text to List</button>
+
+  <!-- Box for Animation -->
+  <div class="box" id="animatedBox"></div>
+  <button id="animateBox">Animate Box</button>
+
+  <script>
+    $(document).ready(function () {
+      // a) Append content at the end of the paragraph and list
+      $("#appendParagraph").click(function () {
+        $("#paragraph").append(" Appended text.");
+      });
+
+      $("#appendList").click(function () {
+        $("#list").append("<li>New List Item</li>");
+      });
+
+      // b) Change the state of the element with CSS style using animate()
+      $("#animateBox").click(function () {
+        $("#animatedBox")
+          .animate({ left: "200px", height: "150px", width: "150px" }, 1000)
+          .animate({ left: "0px", height: "100px", width: "100px" }, 1000)
+          .addClass("animated"); // Add the class to change color
+      });
+    });
+  </script>
+</body>
+</html>

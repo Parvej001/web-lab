@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+<title>Table.html</title>
+<meta charset:UTF-8>
+</head>
+
+<style>
+body{
+text-align:center;
+font-family:arial;
+}
+table{
+width:auto;
+margin :20px auto;
+border-collapse:collapse;
+}
+th,td{
+border:2px solid black;
+text-align:center;
+padding : 10px;
+}
+th{
+background-color:orange;
+}
+td{
+border:2px solid black;
+}
+tr:nth-child(even){
+background-color:red;
+}
+tr:nth-child(odd){
+background-color:yellow;
+}
+tfoot.tr{
+background-color:white;
+}
+</style>
+
+
+
+
+
+
+<body>
+<h1>Time Table</h1>
+<table>
+<thead>
+<tr>
+<th>Day/Time</th>
+<th>8:45-9:40</th>
+<th>9:40-10:35</th>
+<th>10:35-10:50</th>
+<th>10:50-11:45</th>
+<th>11:45-12:40</th>
+<th>12:40-1:40</th>
+<th>1:40-2:35</th>
+<th>2:35-3:30</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monday</td>
+<td>RM&IPR</td>
+<td>CN</td>
+<td rowspan = "5" >Tea Break</td>
+<td>TOC</td>
+<td>SEPM</td>
+<td rowspan = "5" >Lunch Break</td>
+<td colspan = "2" >WEB-LAB</td>
+</tr>
+<tr>
+<td>Tuesday</td>
+<td>SEPM</td>
+<td>EVS</td>
+<td>AI</td>
+<td>RM&IPR</td>
+<td colspan = "2" ></td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td colspan= "2" >TOC</td>
+<td colspan= "2" >--SOFT-SKILL--</td>
+<td colspan = "2" >--FORUM--</td>
+</tr>
+</tbody>
+<tfoot>
+<tr><td colspan= "9">5th SEm -B sec</td></tr>
+</tfoot>
+</body>
+</html>
